@@ -1,6 +1,7 @@
 import os
 import re
 import glob
+import colorama
 import subprocess
 from collections import OrderedDict
 from collections.abc import Mapping
@@ -12,7 +13,7 @@ from SCons.Script import ARGUMENTS
 from SCons.Script import Glob
 from SCons.Variables.BoolVariable import _text2bool
 
-
+colorama.init()
 def add_source_files(self, sources, files):
     # Convert string to list of absolute paths (including expanding wildcard)
     if isbasestring(files):
@@ -326,7 +327,7 @@ def use_windows_spawn_fix(self, platform=None):
         rv = proc.wait()
         if rv:
             print("=====")
-            print(err)
+            print(err.decode('ascii'))
             print("=====")
         return rv
 
